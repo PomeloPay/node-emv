@@ -22,6 +22,19 @@ function getElement( tag, emv_objects, callback ){
 		});
 };
 
+
+function parseSync(emv_data) {
+	return new Promise(function(resolve, reject) {
+		parse(hexString, function(data) {
+      if (data != null) {
+        resolve(data)
+      } else {
+        reject('Some error occured decoding EMV consumer QR code')
+      }
+		})
+	})
+}
+
 function parse(emv_data, callback){
 	var emv_objects = [];
 	while(emv_data.length > 0){
