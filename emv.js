@@ -228,50 +228,6 @@ function auc(auc_data, callback){
 };
 
 
-function tsi(tsi_data, callback){
-	var tsi_bin = util.Hex2Bin(tsi_data);
-	var data = [];
-	var Byte1 = [
-		{ 'bit' : '8' , 'value' : tsi_bin.substring(0, 1), 'description' : 'Offline data authentication was performed' },
-		{ 'bit' : '7' , 'value' : tsi_bin.substring(1, 2), 'description' : 'Cardholder verification was performed' },
-		{ 'bit' : '6' , 'value' : tsi_bin.substring(2, 3), 'description' : 'Card risk management was performed' },
-		{ 'bit' : '5' , 'value' : tsi_bin.substring(3, 4), 'description' : 'Issuer authentication was performed' } ,
-		{ 'bit' : '4' , 'value' : tsi_bin.substring(4, 5), 'description' : 'Terminal risk management was performed' } ,
-		{ 'bit' : '3' , 'value' : tsi_bin.substring(5, 6), 'description' : 'Script processing was performed' } ,
-		{ 'bit' : '2' , 'value' : tsi_bin.substring(6, 7), 'description' : 'RFU' } ,
-		{ 'bit' : '1' , 'value' : tsi_bin.substring(7, 8), 'description' : 'RFU' }
-	];
-
-	var Byte2 = [
-		{ 'bit' : '8' , 'value' : tsi_bin.substring(8, 9),   'description' : 'RFU' },
-		{ 'bit' : '7' , 'value' : tsi_bin.substring(9, 10),  'description' : 'RFU' },
-		{ 'bit' : '6' , 'value' : tsi_bin.substring(10, 11), 'description' : 'RFU' },
-		{ 'bit' : '5' , 'value' : tsi_bin.substring(11, 12), 'description' : 'RFU' },
-		{ 'bit' : '4' , 'value' : tsi_bin.substring(12, 13), 'description' : 'RFU' },
-		{ 'bit' : '3' , 'value' : tsi_bin.substring(13, 14), 'description' : 'RFU' },
-		{ 'bit' : '2' , 'value' : tsi_bin.substring(14, 15), 'description' : 'RFU' },
-		{ 'bit' : '1' , 'value' : tsi_bin.substring(15, 16), 'description' : 'RFU' },
-	];
-	data.push(Byte1, Byte2);
-	callback(data);
-};
-
-function to_bits(hexData, callback){
-	var bin_data = util.Hex2Bin(hexData);
-	var data = [];
-	var no_bytes = bin_data.length / 8;
-	for(var i = 0; i < no_bytes; i++){
-		var str = '{ byte : '+ i + ', bits : [';
-		for(var j = 0; j < 8; j++){
-			str += ' { bit : '+ j + ', value : ' + bin_data.substring(i, i + 1) + ' }' ;
-			if(j != 7) str += ',';
-		}
-		str += ']}'
-		data.push( str );
-	}
-	callback(data);
-};
-
 
 function tvr(tvr_data, callback){
 	var tvr_bin = util.Hex2Bin(tvr_data);
