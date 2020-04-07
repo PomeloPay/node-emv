@@ -308,6 +308,7 @@ function tvr(tvr_data, callback){
 
 module.exports={
 	parse : function(emv_data, callback){ parse(emv_data, callback); },
+	parseSync: function(emv_data){ parseSync(emv_data, callback); },
 	describe : function(emv_data, callback){ describeKernel(emv_data, "Generic", callback); },
 	lookup : function(emv_tag, callback){ lookupKernel(emv_tag, "Generic",callback); },
 	describeKernel : function(emv_data, kernel, callback){ describeKernel(emv_data, kernel, callback); },
